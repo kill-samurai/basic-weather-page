@@ -1,3 +1,5 @@
+// The clock function is used to get the current browser time and change in the website.
+
 function clock (){
   const d = new Date()
   hours = d.getHours()
@@ -20,7 +22,7 @@ function clock (){
   }
 }
 
-
+// the getLocation functions as it's name implies get the location from the browser permissiont must be approved in order for it to work.
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -28,13 +30,14 @@ function getLocation() {
 }
 
 
-
+// this function gets the data from the getLocation function and pulls the latitude and longitude, then it uses the fetch method to get the data from the open wwather API using the browser location
 function showPosition(position) {
     var latitude =  position.coords.latitude;
     var longitude =  position.coords.longitude;
     fetch("https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=282d3de868454d1b54df7950b55c9495&units=metric") .then(response => response.json()) .then(data => write_data(data))
 }
 
+// this function writes the weather data
 function write_data(data) {
   console.log(data)
   current_tempt = Math.floor(data.main.temp)
